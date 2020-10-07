@@ -42,6 +42,7 @@ def hash_file(fn, hash_type):
         # return the hex representtion of digest
         return h.hexdigest()
 
+ 
 print(sys.argv)
 hash_type = sys.argv[1]
 fn = sys.argv[2]
