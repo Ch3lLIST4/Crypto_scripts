@@ -1,16 +1,25 @@
 # Python Program to find the SHA3_512 message digest of a file
 
+
 # importing the hashlib module
 import hashlib
 import os
 import sys
+
+
+valid_types = ['md5', 'sha1', 
+        'sha224', 'sha256', 'sha384', 'sha512', 
+        'sha3_224', 'sha3_384', 'sha3_512']
+
 
 def hash_file(fn, hash_type):
     """"This function returns the SHA-1 hash
     of the file passed into it"""
 
     # make a hash object based on types
-    if hash_type == 'sha1':
+    if hash_type == 'md5':
+        h = hashlib.md5()
+    elif hash_type == 'sha1':
         h = hashlib.sha1()
     elif hash_type == 'sha224':
         h = hashlib.sha224()
@@ -42,16 +51,24 @@ def hash_file(fn, hash_type):
         # return the hex representtion of digest
         return h.hexdigest()
 
- 
-print(sys.argv)
-hash_type = sys.argv[1]
-fn = sys.argv[2]
 
-if os.path.exists(fn):
-    print(os.path.basename(fn))
-    # file exists
-    message = hash_file(fn, hash_type)
-    print(message)
+try:
+    hash_type = sys.argv[1].lower().strip()
+    fn = sys.argv[2]
 
-else:
-    print('Please include an existing file path')
+    if not any(hash_type in s for s in valid_types):
+        print('Invalid hashtype\n\nValid hash type includes:', ", ".join(valid_types))
+
+    elif os.path.exists(fn):
+        print(os.path.basename(fn))
+        # file exists
+        message = hash_file(fn, hash_type)
+        print(message)
+    else:
+        print('Please include an existing file path')
+
+except IndexError as error:
+    print("""
+Usage: hash_calc.py hashtype filepath
+    """)
+    
