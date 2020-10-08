@@ -1,4 +1,4 @@
-# Python Program to find the SHA3_512 message digest of a file
+# Python Program to find the hash message digest of a file
 
 
 # importing the hashlib module
