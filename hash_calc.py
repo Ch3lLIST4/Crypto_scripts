@@ -1,4 +1,4 @@
-# Python Program to find the hash message digest of a file
+# Handy Python Script to find the hash message digest of a file
 
 
 # importing the hashlib module
