@@ -3,4 +3,4 @@ Small crypto related scripts
 
 
 - hash_calc.py <br>
-> calculate file hash based on given type
+> calculate file hash based on python hashlib given type
